@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>ToDo by Ish</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+	 crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">
+
+		<div class="addTask">
+			<input type="text" placeholder="Add a Task">
+			<button>Add</button>
+		  </div>
+
+		  <ol class="notCompleted">
+			  <h3>Not Completed</h3>
+		  </ol>
+
+		  <ol class="Completed">
+			  <h3>Completed</h3>
+		  </ol>
+
+	  </div>
+    <!-- <script> src="script.js"> -->
+	<script>
+		const input = document.querySelector('input');
+		const btn = document.querySelector('.addTask > button');
+
+		input.addEventListener('keyup', (e)=>{
+			(e.keyCode === 13 ? addList(e) : null);
+		});
+		btn.addEventListener('click', addList);
+
+		function addList(e){
+			const notCompleted = document.querySelector('.notCompleted');
+			const Completed = document.querySelector('.Completed');
+
+			const newLi = document.createElement('li');
+			const checkBtn = document.createElement('button');
+			const delBtn = document.createElement('button');
+
+			checkBtn.innerHTML = '<i class="fa fa-check"></i>';
+			delBtn.innerHTML = '<i class="fa fa-trash"></i>';
+
+			if(input.value !==''){
+				newLi.textContent = input.value;
+				input.value = '';
+				notCompleted.appendChild(newLi);
+				newLi.appendChild(checkBtn);
+				newLi.appendChild(delBtn);
+			}
+
+			checkBtn.addEventListener('click', function(){
+				const parent = this.parentNode;
+				parent.remove();
+				Completed.appendChild(parent);
+				checkBtn.style.display = 'none';
+			});
+
+			delBtn.addEventListener('click', function(){
+				const parent = this.parentNode;
+				parent.remove();
+			});
+		}
+	</script>
+  </body>
+</html>
