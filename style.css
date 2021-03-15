@@ -1,3 +1,4 @@
+  
 * {
 	margin: 0;
 	padding: 0;
@@ -75,6 +76,10 @@ ol li {
 
 ol.Completed li {
 	background: #00ff62;
+}
+
+.Completed, notCompleted {
+	font-size: 30px;
 }
 
 ol li::before {
